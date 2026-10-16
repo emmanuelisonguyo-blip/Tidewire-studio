@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tidewire Studio — Websites that move</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ff;--fg:#14183f;--mute:#4d5380;--line:rgba(20,24,63,.22);--panel:rgba(238,241,255,.72);--accent:#d9442a;--on-accent:#fff;--d:'Syne','Helvetica Neue',Arial,sans-serif;--b:'DM Sans','Helvetica Neue',Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f33;--fg:#eef1ff;--mute:#aab2e6;--line:rgba(238,241,255,.24);--panel:rgba(11,15,51,.7);--accent:#ff7a59;--on-accent:#14183f}}
+:root[data-theme="dark"]{--bg:#0b0f33;--fg:#eef1ff;--mute:#aab2e6;--line:rgba(238,241,255,.24);--panel:rgba(11,15,51,.7);--accent:#ff7a59;--on-accent:#14183f}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1.0625rem/1.6 var(--b);overflow-x:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+main,header,footer{position:relative;z-index:2}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:9;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem clamp(1rem,4vw,3rem);background:linear-gradient(var(--panel),transparent);backdrop-filter:blur(6px)}
+.logo{font:800 1.25rem var(--d);text-decoration:none;letter-spacing:-.01em}
+nav{display:flex;gap:clamp(.8rem,3vw,2rem);align-items:center}
+nav a{text-decoration:none;font-weight:500;padding:.25rem 0;border-bottom:2px solid transparent}
+nav a.on{border-color:var(--accent)}
+#theme{background:none;border:1px solid var(--line);color:var(--fg);border-radius:99px;padding:.3rem .8rem;font:inherit;font-size:.9rem;cursor:pointer}
+section{padding:clamp(4.5rem,11vw,9rem) clamp(1rem,4vw,3rem);max-width:1280px;margin:0 auto}
+#top{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:5rem}
+h1{font:800 clamp(2.8rem,10.5vw,9rem)/.92 var(--d);letter-spacing:-.04em;margin:0 0 1.6rem;max-width:12ch}
+h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+h1 .w span{display:inline-block;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*.12s + .2s)}
+@keyframes up{to{transform:none}}
+.lede{max-width:34rem;color:var(--mute);font-size:1.2rem;margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;font:700 1rem var(--d);padding:.95rem 1.6rem;border-radius:99px;text-decoration:none;border:1.5px solid var(--fg);background:none;color:var(--fg);cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:hover{transform:translateY(-3px)}
+h2{font:800 clamp(2rem,5.5vw,4.2rem)/1 var(--d);letter-spacing:-.03em;margin:0 0 2.5rem;max-width:18ch}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr auto;gap:.5rem 2rem;align-items:baseline;padding:1.6rem 0;border-bottom:1px solid var(--line);transition:padding .35s cubic-bezier(.2,.8,.2,1),background .35s;background:linear-gradient(90deg,var(--panel),var(--panel)) no-repeat 0 0/0 100%}
+.row:hover,.row:focus-visible{padding-left:1.2rem;background-size:100% 100%}
+.row h3{font:700 clamp(1.5rem,4vw,2.6rem)/1.1 var(--d);margin:0;letter-spacing:-.02em}
+.row p{grid-column:1;margin:0;color:var(--mute);max-width:38rem}
+.row .meta{grid-row:1;grid-column:2;color:var(--mute);font-size:.95rem;text-align:right}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:1px solid var(--line)}
+.svc div{padding:2rem 1.5rem 2rem 0;border-bottom:1px solid var(--line)}
+.svc h3{font:700 1.6rem var(--d);margin:0 0 .6rem;letter-spacing:-.02em}
+.svc p{margin:0 0 1rem;color:var(--mute)}
+.svc ul{margin:0;padding-left:1.1rem}
+.svc li{margin:.2rem 0}
+form{display:grid;gap:1.2rem;max-width:40rem;background:var(--panel);backdrop-filter:blur(10px);padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--line);border-radius:18px}
+label{display:grid;gap:.4rem;font-weight:500}
+input,select,textarea{font:inherit;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem;width:100%}
+select option{color:#14183f}
+textarea{min-height:8rem;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.err{color:var(--accent);font-size:.9rem;min-height:1.1em;font-weight:400}
+#ok{display:none;font:700 1.4rem/1.3 var(--d)}
+footer{padding:2rem clamp(1rem,4vw,3rem) 5rem;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;max-width:1280px;margin:0 auto}
+/* custom cursor */
+#cur,#ring{position:fixed;left:0;top:0;pointer-events:none;z-index:20;opacity:0;transition:opacity .3s}
+#cur{width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--accent)}
+#ring{width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1.5px solid var(--fg);display:grid;place-items:center;font:700 .62rem var(--d);color:var(--bg);transition:width .3s,height .3s,margin .3s,background .3s,opacity .3s}
+#ring.big{width:84px;height:84px;margin:-42px 0 0 -42px;background:var(--fg)}
+#ring.big.txt{color:var(--bg)}
+.fine #cur,.fine #ring{opacity:1}
+.fine,.fine a,.fine button,.fine .row,.fine input,.fine select,.fine textarea{cursor:none}
+/* HUD */
+#hud{position:fixed;left:clamp(.6rem,2vw,1.5rem);bottom:calc(.8rem + env(safe-area-inset-bottom,0px));z-index:10;display:flex;gap:.9rem;flex-wrap:wrap;padding:.45rem .8rem;border:1px solid var(--line);border-radius:99px;background:var(--panel);backdrop-filter:blur(8px);font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--mute);pointer-events:none}
+#hud b{color:var(--fg);font-weight:500}
+#bar{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 0;transform:scaleX(0);background:var(--accent);z-index:30;margin-top:env(safe-area-inset-top,0px)}
+@media (max-width:640px){#hud .x{display:none}.row{grid-template-columns:1fr}.row .meta{grid-row:auto;grid-column:1;text-align:left}nav a:not(.keep){display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}h1 .w span{animation:none;transform:none}.row,.btn{transition:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="cur"></div><div id="ring"></div>
+
+<header>
+  <a class="logo" href="#top" data-cur="Top">Tidewire</a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a><a href="#services">Services</a><a class="keep" href="#contact">Contact</a>
+    <button id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+  </nav>
+</header>
+
+<main>
+  <section id="top">
+    <h1 aria-label="We build websites that move.">
+      <span class="w" aria-hidden="true"><span style="--i:0">We</span></span>
+      <span class="w" aria-hidden="true"><span style="--i:1">build</span></span>
+      <span class="w" aria-hidden="true"><span style="--i:2">websites</span></span>
+      <span class="w" aria-hidden="true"><span style="--i:3">that</span></span>
+      <span class="w" aria-hidden="true"><span style="--i:4">move.</span></span>
+    </h1>
+    <p class="lede">Tidewire is a small studio designing and building interactive sites, with real-time graphics and motion that respond to every visitor. Move your pointer: the background follows.</p>
+    <div class="btns"><a class="btn p" href="#contact" data-cur="Start">Start a project</a><a class="btn" href="#work" data-cur="Look">See our work</a></div>
+  </section>
+
+  <section id="work">
+    <h2>Recent work</h2>
+    <div class="rows">
+      <article class="row" tabindex="0" data-cur="Preview" data-acc="1,.42,.3"><h3>Meridian Air</h3><span class="meta">Booking redesign, 2026</span><p>A flight search that shows routes forming on a live globe, cutting booking time by a third.</p></article>
+      <article class="row" tabindex="0" data-cur="Preview" data-acc=".2,.85,.75"><h3>Soundfield</h3><span class="meta">Web app, 2026</span><p>An audio explorer where each track is a shader that reacts to its own waveform.</p></article>
+      <article class="row" tabindex="0" data-cur="Preview" data-acc="1,.78,.25"><h3>Kiln &amp; Co.</h3><span class="meta">Online shop, 2025</span><p>A ceramics storefront with glaze colours you can rotate, tilt and compare in the browser.</p></article>
+      <article class="row" tabindex="0" data-cur="Preview" data-acc=".9,.35,.95"><h3>Lowtide Festival</h3><span class="meta">Ticketing site, 2025</span><p>A festival microsite that handled 40,000 ticket requests in its first hour without slowing down.</p></article>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>What we make</h2>
+    <div class="svc">
+      <div><h3>Websites</h3><p>Fast, accessible sites your team can edit without us.</p><ul><li>Design and build</li><li>CMS setup</li><li>Performance tuning</li></ul></div>
+      <div><h3>Interactive pieces</h3><p>Product explainers, configurators and microsites.</p><ul><li>Prototypes in two weeks</li><li>3D and data views</li><li>Touch and keyboard support</li></ul></div>
+      <div><h3>Motion and shaders</h3><p>Graphics that run in the browser and respond to input.</p><ul><li>Custom WebGL effects</li><li>Page transitions</li><li>Fallbacks for older devices</li></ul></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Tell us what you're building</h2>
+    <form id="f" novalidate>
+      <label>Your name<input id="n" name="name" autocomplete="name"><span class="err" id="en"></span></label>
+      <label>Email<input id="e" name="email" type="email" autocomplete="email"><span class="err" id="ee"></span></label>
+      <label>Project type<select id="t"><option>New website</option><option>Interactive piece</option><option>Motion or shader work</option><option>Not sure yet</option></select></label>
+      <label>Message<textarea id="m" name="message"></textarea><span class="err" id="em"></span></label>
+      <button class="btn p" type="submit" data-cur="Send">Send message</button>
+    </form>
+    <p id="ok" role="status"></p>
+  </section>
+</main>
+
+<footer><span>Tidewire Studio</span><span>hello@tidewire.example</span></footer>
+
+<div id="hud" aria-hidden="true"><span><b id="fps">60</b> fps</span><span class="x">pointer <b id="px">0</b>, <b id="py">0</b></span><span>scroll <b id="sp">0</b>%</span><span>in <b id="sec">top</b></span></div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},root=document.documentElement;
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var isLight=function(){var t=root.dataset.theme;return t?t==='light':!matchMedia('(prefers-color-scheme: dark)').matches};
+if(matchMedia('(pointer:fine)').matches)root.classList.add('fine');
+
+/* theme */
+$('#theme').onclick=function(){root.dataset.theme=isLight()?'dark':'light'};
+
+/* shader */
+var cv=$('#gl'),gl=cv.getContext('webgl',{antialias:false,alpha:false});
+var mx=innerWidth/2,my=innerHeight/2,smx=mx,smy=my,scr=0,sScr=0,acc=[1,.48,.35],tAcc=[1,.48,.35],lt=isLight()?1:0,sLt=lt;
+var U={};
+if(gl){
+ var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+ var fs='precision highp float;uniform vec2 r,m;uniform float t,s,l;uniform vec3 c;'+
+ 'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}'+
+ 'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}'+
+ 'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}'+
+ 'void main(){vec2 p=(gl_FragCoord.xy-.5*r)/r.y;vec2 mm=(m-.5*r)/r.y;float d=length(p-mm);'+
+ 'p+=(p-mm)*.22*exp(-d*3.5)*sin(d*20.-t*2.2);'+
+ 'vec2 q=vec2(fbm(p*1.6+t*.05),fbm(p*1.6+vec2(5.2,1.3)-t*.04));'+
+ 'float f=fbm(p*1.4+2.*q+vec2(0.,s*.7)+t*.03);'+
+ 'vec3 a=vec3(.04,.06,.24),b=vec3(.32,.2,.78);'+
+ 'vec3 col=mix(a,b,smoothstep(.2,.62,f));'+
+ 'col=mix(col,c,smoothstep(.56,.95,f+q.x*.3)*.7);'+
+ 'col+=c*.18*exp(-d*4.);'+
+ 'col*=1.-.5*dot(gl_FragCoord.xy/r-.5,gl_FragCoord.xy/r-.5);'+
+ 'col+=(h(gl_FragCoord.xy+t)-.5)*.03;'+
+ 'col=mix(col,vec3(1.)-(vec3(1.)-col)*.3,l);'+
+ 'gl_FragColor=vec4(col,1.);}';
+ var sh=function(ty,src){var o=gl.createShader(ty);gl.shaderSource(o,src);gl.compileShader(o);return o};
+ var pg=gl.createProgram();gl.attachShader(pg,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pg,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pg);gl.useProgram(pg);
+ var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+ var loc=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+ ['r','m','t','s','l','c'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
+}else{cv.style.background='linear-gradient(135deg,#0b0f33,#5233c7 60%,#ff7a59)'}
+function size(){if(!gl)return;var d=Math.min(devicePixelRatio||1,1.5);cv.width=innerWidth*d;cv.height=innerHeight*d;gl.viewport(0,0,cv.width,cv.height)}
+addEventListener('resize',size);size();
+
+/* pointer + cursor */
+var cur=$('#cur'),ring=$('#ring'),rx=mx,ry=my;
+addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;$('#px').textContent=Math.round(mx);$('#py').textContent=Math.round(my);cur.style.transform='translate('+mx+'px,'+my+'px)'},{passive:true});
+document.addEventListener('pointerover',function(e){
+ var el=e.target.closest&&e.target.closest('[data-cur]');
+ if(el){ring.classList.add('big','txt');ring.textContent=el.dataset.cur}else{ring.classList.remove('big','txt');ring.textContent=''}
+ var row=e.target.closest&&e.target.closest('[data-acc]');
+ tAcc=row?row.dataset.acc.split(',').map(Number):[1,.48,.35];
+});
+document.addEventListener('focusin',function(e){var row=e.target.closest&&e.target.closest('[data-acc]');if(row)tAcc=row.dataset.acc.split(',').map(Number)});
+
+/* scroll + sections */
+var bar=$('#bar');
+function onScroll(){var max=document.documentElement.scrollHeight-innerHeight;scr=max>0?scrollY/max:0;bar.style.transform='scaleX('+scr+')';$('#sp').textContent=Math.round(scr*100)}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+var links={};document.querySelectorAll('nav a[href^="#"]').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var id=en.target.id;$('#sec').textContent=id==='top'?'hero':id;for(var k in links)links[k].classList.toggle('on',k===id)}})},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section').forEach(function(s){io.observe(s)});
+
+/* loop */
+var t0=performance.now(),last=t0,fc=0,fa=t0;
+function lerp(a,b,k){return a+(b-a)*k}
+function frame(now){
+ requestAnimationFrame(frame);
+ fc++;if(now-fa>500){$('#fps').textContent=Math.round(fc*1000/(now-fa));fc=0;fa=now}
+ smx=lerp(smx,mx,.08);smy=lerp(smy,my,.08);sScr=lerp(sScr,scr,.06);
+ rx=lerp(rx,mx,.18);ry=lerp(ry,my,.18);ring.style.transform='translate('+rx+'px,'+ry+'px)';
+ for(var i=0;i<3;i++)acc[i]=lerp(acc[i],tAcc[i],.06);
+ sLt=lerp(sLt,isLight()?1:0,.08);
+ if(gl){var t=(now-t0)/1000*(reduce?.15:1);
+  gl.uniform2f(U.r,cv.width,cv.height);gl.uniform2f(U.m,smx*cv.width/innerWidth,(innerHeight-smy)*cv.height/innerHeight);
+  gl.uniform1f(U.t,t);gl.uniform1f(U.s,sScr*6);gl.uniform1f(U.l,sLt);gl.uniform3f(U.c,acc[0],acc[1],acc[2]);
+  gl.drawArrays(gl.TRIANGLES,0,3)}
+}
+requestAnimationFrame(frame);
+
+/* form */
+var f=$('#f');
+function setErr(id,msg){$(id).textContent=msg;return !msg}
+f.addEventListener('submit',function(ev){
+ ev.preventDefault();
+ var n=$('#n').value.trim(),e=$('#e').value.trim(),m=$('#m').value.trim();
+ var a=setErr('#en',n?'':'Enter your name.');
+ var b=setErr('#ee',/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)?'':'Enter an email address like name@company.com.');
+ var c=setErr('#em',m.length>=10?'':'Tell us a little more (at least 10 characters).');
+ if(!(a&&b&&c))return;
+ var btn=f.querySelector('button');btn.textContent='Sending…';btn.disabled=true;
+ setTimeout(function(){
+  f.style.display='none';var ok=$('#ok');ok.style.display='block';
+  ok.textContent='Message sent. Thanks, '+n.split(' ')[0]+'. We will reply to '+e+' within two working days.';
+ },700);
+});
+})();
+</script>
+</body>
+</html>
